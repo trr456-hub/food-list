@@ -27,7 +27,7 @@ const Home = () => {
       );
     }
   });
-  //console.log(foodKinds);
+  console.log(foodKinds);
 
   const randomKinds = () => {
     const rrr = foodKinds[Math.floor(Math.random() * foodKinds.length)];
@@ -50,8 +50,22 @@ const Home = () => {
         // 리액트 라이브러리는 이 관계를 이용해 컴포넌트 리렌더링 여부를 결정한다.
         // 불필요한 리렌더링을 방지하기 위해서는 각 자식 컴포넌트마다 독립적인 key값을 넣어줘야 한다.
         <div>
-          <button onClick={randomKinds}>반찬추출</button>
-          <div>{foodNm}</div>
+          <div>
+            <button onClick={randomKinds}>반찬추출</button>
+            <div>{foodNm}</div>
+          </div>
+          <div>
+            <button>일품추출</button>
+          </div>
+          <div>
+            <button>간식추출</button>
+          </div>
+          <div>
+            <button>국&찌개추출</button>
+          </div>
+          <div>
+            <button>밥추출</button>
+          </div>
         </div>
       )}
     </div>
