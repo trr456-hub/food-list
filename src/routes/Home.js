@@ -25,13 +25,19 @@ const Home = () => {
   };
 
   // 음식 종류 추출 부분
-  const foodKinds = foods.map((food) => (
-    <div key={food.RCP_PAT2}>
-      <div>{food.RCP_NM}</div>
-      <img src={food.ATT_FILE_NO_MAIN} alt="imges" />
-    </div>
-  ));
-  //console.log(foodKinds);
+  const foodKinds = foods.map((food) => {
+    return (
+      <>
+        key = {food.RCP_SEQ} name = {food.RCP_NM}
+      </>
+    );
+
+    // <div key={food.RCP_PAT2}>
+    //   <div>{food.RCP_NM}</div>
+    //   <img src={food.ATT_FILE_NO_MAIN} alt="imges" />
+    // </div>
+  });
+  console.log(foodKinds);
 
   // State 의 변화 => 렌더링 => 컴포넌트 내부 변수들 초기화
   // Ref 의 변화 => NO렌더링 => 변수들의 값이 유지됨
