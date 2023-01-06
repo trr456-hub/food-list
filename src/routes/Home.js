@@ -16,7 +16,7 @@ const Home = () => {
   const getFoods = async () => {
     const json = await (
       await fetch(
-        `http://openapi.foodsafetykorea.go.kr/api/5efa61cf6eb74a45b1a3/COOKRCP01/json/1/300`
+        `http://openapi.foodsafetykorea.go.kr/api/5efa61cf6eb74a45b1a3/COOKRCP01/json/1/1000`
       )
     ).json();
     setFoods(json.COOKRCP01.row);
@@ -31,7 +31,7 @@ const Home = () => {
       <img src={food.ATT_FILE_NO_MAIN} alt="imges" />
     </div>
   );
-  //console.log(foodKinds);
+  // console.log(foodKinds);
 
   // State 의 변화 => 렌더링 => 컴포넌트 내부 변수들 초기화
   // Ref 의 변화 => NO렌더링 => 변수들의 값이 유지됨
@@ -40,9 +40,21 @@ const Home = () => {
   /** array의 길이만큼에 숫자 중에서 랜덤으로 숫자 하나를 뽑는 함수 */
   const randomNum = (arr) => Math.floor(Math.random() * arr.length);
   /** state 중에서 setter 들만 모아놓은 object */
-  const setters = { 반찬: setBan, 일품: setIlp };
+  const setters = {
+    반찬: setBan,
+    일품: setIlp,
+    후식: setDesser,
+    "국&찌개": setGu,
+    밥: setRic,
+  };
   /** state 중에서 getter 들만 모아놓은 object */
-  const getters = { 반찬: ban, 일품: ilp };
+  const getters = {
+    반찬: ban,
+    일품: ilp,
+    후식: desser,
+    "국&찌개": gu,
+    밥: ric,
+  };
   /** 우리가 사용하는 음식종류들 ex: ["반찬","일품"...] */
   const kinds = Object.keys(setters);
 
@@ -83,7 +95,7 @@ const Home = () => {
         // 불필요한 리렌더링을 방지하기 위해서는 각 자식 컴포넌트마다 독립적인 key값을 넣어줘야 한다.
         <div>
           {kindBtns}
-          {modal && <FoodModal setModal={setModal} setData={data} />}
+          {modal && <FoodModal setModal={setModal} foodData={data} />}
         </div>
       )}
     </div>
