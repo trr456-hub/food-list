@@ -1,5 +1,5 @@
 const FoodModal = ({ setModal, setData }) => {
-  console.log(setData.props.children[0].props.children);
+  console.log(setData);
   const closeModal = () => {
     setModal(false);
   };
@@ -8,7 +8,7 @@ const FoodModal = ({ setModal, setData }) => {
       <button className="close" onClick={closeModal}>
         ❌
       </button>
-      <div>{setData.props.children[0].props.children}</div>
+      <div></div>
     </div>
   );
 };
