@@ -1,11 +1,26 @@
-import React, { useState } from "react";
-import Routers from "./Router";
+import React, { useEffect, useState } from "react";
+import AppRouter from "../components/Router";
 import { Auth } from "../fbase";
 
 const App = () => {
-  //console.log(Auth.currentUser);
-  const [login, setLogin] = useState(Auth.currentUser);
-  return <Routers login={login} />;
+  const [init, setInit] = useState(false);
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    Auth.onAuthStateChanged((user) => {
+      if (user) {
+        setState(true);
+      } else {
+        setState(false);
+      }
+      setInit(true);
+    });
+  }, []);
+  return (
+    <>
+      {init ? <AppRouter state={state} /> : "초기화 중..."}
+      <footer>&copy; {new Date().getFullYear()} Food-Lists</footer>
+    </>
+  );
 };
 
 export default App;
