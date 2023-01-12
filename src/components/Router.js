@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
+import Memorize from "../routes/Memorize";
+import Navigation from "components/Navigation";
 
 const AppRouter = (state) => {
   // 로그인의 결과를 판단하는 state
@@ -9,9 +11,13 @@ const AppRouter = (state) => {
   //console.log(state);
   return (
     <Router>
+      {state.state && <Navigation />}
       <Routes>
         {state.state ? (
-          <Route path="/" element={<Home />} />
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/memorize" element={<Memorize />} />
+          </>
         ) : (
           <Route path="/" element={<Auth />} />
         )}

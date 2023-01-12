@@ -1,4 +1,3 @@
-import { Auth } from "fbase";
 import { useEffect, useState } from "react";
 // import FoodList from "../components/FoodList";
 import FoodModal from "../components/FoodModal";
@@ -84,9 +83,6 @@ const Home = () => {
       <div onClick={setWindow}>{getters[kind]}</div>
     </div>
   ));
-
-  const logoutClick = () => Auth.signOut();
-
   return (
     <div>
       {loading ? (
@@ -98,7 +94,6 @@ const Home = () => {
         // 리액트 라이브러리는 이 관계를 이용해 컴포넌트 리렌더링 여부를 결정한다.
         // 불필요한 리렌더링을 방지하기 위해서는 각 자식 컴포넌트마다 독립적인 key값을 넣어줘야 한다.
         <div>
-          <button onClick={logoutClick}>로그아웃</button>
           {kindBtns}
           {modal && <FoodModal setModal={setModal} foodData={data} />}
         </div>

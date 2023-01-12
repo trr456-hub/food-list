@@ -33,11 +33,11 @@ const FoodModal = ({ setModal, foodData }) => {
         <div>
           <div>
             <h2>영양정보</h2>
-            <span>칼로리 : {foodData.INFO_ENG}</span>
-            <span>탄수화물 : {foodData.INFO_CAR}</span>
-            <span>단백질 : {foodData.INFO_PRO}</span>
-            <span>지방 : {foodData.INFO_FAT}</span>
-            <span>나트륨: {foodData.INFO_NA}</span>
+            <span>칼로리 : {foodData.INFO_ENG} </span>
+            <span>탄수화물 : {foodData.INFO_CAR} </span>
+            <span>단백질 : {foodData.INFO_PRO} </span>
+            <span>지방 : {foodData.INFO_FAT} </span>
+            <span>나트륨: {foodData.INFO_NA} </span>
           </div>
           <div>
             <h2>재료</h2>

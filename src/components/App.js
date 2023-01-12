@@ -15,12 +15,7 @@ const App = () => {
       setInit(true);
     });
   }, []);
-  return (
-    <>
-      {init ? <AppRouter state={state} /> : "초기화 중..."}
-      <footer>&copy; {new Date().getFullYear()} Food-Lists</footer>
-    </>
-  );
+  return <>{init ? <AppRouter state={state} /> : "초기화 중..."}</>;
 };
 
 export default App;
