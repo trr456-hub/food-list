@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 // import FoodList from "../components/FoodList";
 import FoodModal from "../components/FoodModal";
 import "../ModalStyle.css";
+import { dbService } from "fbase";
+import { collection, addDoc } from "firebase/firestore";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -83,6 +85,16 @@ const Home = () => {
       <div onClick={setWindow}>{getters[kind]}</div>
     </div>
   ));
+  // form 부분
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(dbService, "food-list"), { data });
+    } catch (error) {
+      console.error("에러내용: ", error);
+    }
+  };
+  console.log(data);
   return (
     <div>
       {loading ? (
@@ -94,8 +106,11 @@ const Home = () => {
         // 리액트 라이브러리는 이 관계를 이용해 컴포넌트 리렌더링 여부를 결정한다.
         // 불필요한 리렌더링을 방지하기 위해서는 각 자식 컴포넌트마다 독립적인 key값을 넣어줘야 한다.
         <div>
-          {kindBtns}
-          {modal && <FoodModal setModal={setModal} foodData={data} />}
+          <form onSubmit={onSubmit}>
+            {kindBtns}
+            {modal && <FoodModal setModal={setModal} foodData={data} />}
+            <input type="submit" value="전체기록" />
+          </form>
         </div>
       )}
     </div>
