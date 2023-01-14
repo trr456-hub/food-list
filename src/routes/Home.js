@@ -90,6 +90,7 @@ const Home = () => {
     e.preventDefault();
     try {
       const docRef = await addDoc(collection(dbService, "food-list"), { data });
+      console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error("에러내용: ", error);
     }
