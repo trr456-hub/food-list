@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const FoodModal = ({ modalState, setModal, foodData }) => {
-  console.log(modalState);
+  // console.log(modalState);
   const closeModal = () => {
     setModal(false);
   };

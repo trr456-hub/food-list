@@ -4,19 +4,19 @@ import Home from "../routes/Home";
 import Memorize from "../routes/Memorize";
 import Navigation from "components/Navigation";
 
-const AppRouter = (state) => {
+const AppRouter = ({ state, userObj }) => {
   // 로그인의 결과를 판단하는 state
   // const [state, setState] = useState(false);
   //useState 는 route 와 동떨어져 있기때문에 App.js로 옮겨준다. (prop사용)
   //console.log(state);
   return (
     <Router>
-      {state.state && <Navigation />}
+      {state && <Navigation />}
       <Routes>
-        {state.state ? (
+        {state ? (
           <>
-            <Route path="/" element={<Home />} />
-            <Route path="/memorize" element={<Memorize />} />
+            <Route path="/" element={<Home userObj={userObj} />} />
+            <Route path="/memorize" element={<Memorize userObj={userObj} />} />
           </>
         ) : (
           <Route path="/" element={<Auth />} />

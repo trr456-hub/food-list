@@ -5,7 +5,7 @@ import "../ModalStyle.css";
 import { dbService } from "fbase";
 import { collection, addDoc } from "firebase/firestore";
 
-const Home = () => {
+const Home = ({ userObj }) => {
   const [loading, setLoading] = useState(true);
   const [foods, setFoods] = useState([]);
   const [ban, setBan] = useState("");
@@ -15,7 +15,7 @@ const Home = () => {
   const [ric, setRic] = useState("");
   const [modal, setModal] = useState(false);
   // const [data, setData] = useState({});
-  const [modalData, setModalData] = useState({
+  const [foodData, setfoodData] = useState({
     ban: null,
     ilp: null,
     desser: null,
@@ -82,13 +82,8 @@ const Home = () => {
     const randomFood = foodsArr[randomNum(foodsArr)];
     const foodComp = foodKinds(randomFood);
     setters[kind](foodComp);
-    // setData((prevFood) => {
-    //   return { ...prevFood, ...randomFood };
-    // });
-    //console.log(randomBan.props.children[0].props.children);
-    setModalData({ ...modalData, [kind]: randomFood });
-    // modaldata 원본 키값들을 변수처리화 한다.
-    // console.log(modalData);
+    setfoodData({ ...foodData, [kind]: randomFood });
+    // foodData 원본 키값들을 변수처리화 한다.
   };
   useEffect(() => {
     //console.log(getFoods());
@@ -108,15 +103,17 @@ const Home = () => {
   // form 부분
   const onSubmit = async () => {
     try {
-      const docRef = await addDoc(collection(dbService, "food-list"), {
-        modalData,
+      const docRef = await addDoc(collection(dbService, "foodList"), {
+        createAt: Date.now(),
+        creatorId: userObj.uid,
+        foodData,
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error("에러내용: ", error);
     }
   };
-  //console.log(data);
+  // console.log(userObj);
   return (
     <div>
       {loading ? (
@@ -134,7 +131,7 @@ const Home = () => {
             <FoodModal
               modalState={modal}
               setModal={setModal}
-              foodData={modalData}
+              foodData={foodData}
             />
           )}
           <button onClick={onSubmit}>전체기록</button>
