@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Auth, dbService } from "fbase";
-import { useNavigate } from "react-router-dom";
-import { collection, getDocs, query } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 const Memorize = ({ userObj }) => {
   const [foods, setFoods] = useState([]);
@@ -11,27 +11,34 @@ const Memorize = ({ userObj }) => {
     Auth.signOut();
     navigate("/");
   };
-  const getFoods = async () => {
-    const q = query(collection(dbService, "foodList"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const foodObj = {
-        ...doc.data(),
-        id: doc.id,
-      };
-      setFoods((prev) => [foodObj, ...prev]);
-    });
-  };
+  // const foodArr = foods.filter((food) => food.creatorId === userObj.uid);
+  // console.log(foodArr);
   useEffect(() => {
-    getFoods();
-  }, []);
-  // console.log(foods);
-  // console.log(userObj);
+    const q = query(
+      collection(dbService, "foodList"),
+      orderBy("createAt", "desc")
+    );
+    onSnapshot(q, (snapshot) => {
+      const uID = userObj.uid;
+      const foodArr = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFoods(foodArr.filter((food) => uID === food.creatorId));
+      //console.log(foodArr.filter((food) => uID === food.creatorId));
+    });
+  }, [userObj.uid]);
+  // console.log(foods.filter((food) => console.log(food.creatorId)));
+  // console.log(userObj.uid);
   return (
     <div>
       <button onClick={logoutClick}>로그아웃</button>
       {foods.map((food) => (
-        <div key={food.creatorId}>{food.foodData.gu.RCP_NM}</div>
+        <div key={food.id}>
+          <Link to={`/memorize/${food.id}`} state={{ foodContents: food }}>
+            {food.createAt}
+          </Link>
+        </div>
       ))}
     </div>
   );

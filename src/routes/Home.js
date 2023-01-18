@@ -100,15 +100,21 @@ const Home = ({ userObj }) => {
       <div onClick={() => setModal(kind)}>{getters[kind]}</div>
     </div>
   ));
+  // db에 들어갈 시간계산 부분
+  const today = new Date();
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const ymd = today.getFullYear() + " ." + month + " ." + day;
+  //console.log(ymd);
   // form 부분
   const onSubmit = async () => {
     try {
       const docRef = await addDoc(collection(dbService, "foodList"), {
-        createAt: Date.now(),
+        createAt: ymd,
         creatorId: userObj.uid,
         foodData,
       });
-      console.log("Document written with ID: ", docRef.id);
+      console.log("생성아이디: ", docRef.id);
     } catch (error) {
       console.error("에러내용: ", error);
     }

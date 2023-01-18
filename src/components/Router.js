@@ -3,6 +3,7 @@ import Auth from "../routes/Auth";
 import Home from "../routes/Home";
 import Memorize from "../routes/Memorize";
 import Navigation from "components/Navigation";
+import MemoWindow from "./MemoWindow";
 
 const AppRouter = ({ state, userObj }) => {
   // 로그인의 결과를 판단하는 state
@@ -17,6 +18,7 @@ const AppRouter = ({ state, userObj }) => {
           <>
             <Route path="/" element={<Home userObj={userObj} />} />
             <Route path="/memorize" element={<Memorize userObj={userObj} />} />
+            <Route path="/memorize/*" element={<MemoWindow />} />
           </>
         ) : (
           <Route path="/" element={<Auth />} />
