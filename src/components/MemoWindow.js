@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import mWindowModal from "./mWindowModal";
+import MWindowModal from "./MWindowModal";
 import { useLocation } from "react-router-dom";
 import "../ModalStyle.css";
 
@@ -21,7 +21,7 @@ const MemoWindow = () => {
           <img src={item.ATT_FILE_NO_MAIN} alt="mImg" />
         </div>
       ))}
-      {modal && <mWindowModal setModal={setModal} />}
+      {modal && <MWindowModal setModal={setModal} />}
     </div>
   );
 };
