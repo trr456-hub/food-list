@@ -12,8 +12,9 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
   const [error, setError] = useState("");
+  const [modal, setModal] = useState(false);
   const auth = getAuth();
-  
+
   const onChange = (e) => {
     //console.log(e.target.value);
     const {
@@ -42,13 +43,16 @@ const Auth = () => {
     }
   };
   const toggleAccount = () => setNewAccount((prev) => !prev);
-  const googlePopup = async() => {
+  const googlePopup = async () => {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
   };
+  const setWindow = () => {
+    setModal(true);
+  };
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="authContainer">
+      <form onSubmit={onSubmit} className="container">
         <input
           name="email"
           type="text"
@@ -56,6 +60,7 @@ const Auth = () => {
           required
           value={email}
           onChange={onChange}
+          className="authInput"
         />
         <input
           name="password"
@@ -64,13 +69,18 @@ const Auth = () => {
           required
           value={password}
           onChange={onChange}
+          className="authInput"
         />
-        <input type="submit" value={newAccount ? "계정생성" : "로그인"} />
-        {error}
+        <input type="submit" className="authInput authSubmit" value="로그인" />
+        {error && <span className="authError">{error}</span>}
       </form>
-      <span onClick={toggleAccount}>{newAccount ? "로그인" : "계정생성"}</span>
-      <div>
-        <button onClick={googlePopup}>GOOGLE 로그인</button>
+      <span onClick={setWindow} className="authSwitch">
+        회원가입
+      </span>
+      <div className="authBtns">
+        <button className="authBtn" onClick={googlePopup}>
+          GOOGLE 로그인
+        </button>
       </div>
     </div>
   );

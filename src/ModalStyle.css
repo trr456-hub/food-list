@@ -1,5 +1,5 @@
 /* 모달창을 화면 중앙. 최상단에 노출 */
-.container {
+.modalContainer {
   /* 모달창 크기 */
   width: 600px;
   height: 700px;

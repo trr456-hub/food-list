@@ -23,7 +23,7 @@ const FoodModal = ({ modalState, setModal, foodData }) => {
   }, [setModal]);
   // console.log(modalRef);
   return (
-    <div className="container">
+    <div className="modalContainer">
       <button className="close" onClick={closeModal}>
         ❌
       </button>

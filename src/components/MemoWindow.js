@@ -5,23 +5,29 @@ import "../ModalStyle.css";
 
 const MemoWindow = () => {
   const [modal, setModal] = useState(false);
+  const [modalData, setModalData] = useState("");
+
   const location = useLocation();
   const foods = location.state.foodContents.foodData;
+  // console.log(foods)
   let foodsArr = Object.keys(foods);
   let foodsMaping = foodsArr.map((item) => foods[item]);
-  const showModal = () => {
+
+  const foodClick = (data) => {
     setModal(true);
+    setModalData(data);
+    console.log(data);
   };
   // console.log(foodsMaping);
   return (
     <div>
       {foodsMaping.map((item) => (
-        <div key={item.RCP_SEQ} onClick={showModal}>
+        <div key={item.RCP_SEQ} onClick={() => foodClick(item)}>
           <div>{item.RCP_NM}</div>
           <img src={item.ATT_FILE_NO_MAIN} alt="mImg" />
         </div>
       ))}
-      {modal && <MWindowModal setModal={setModal} />}
+      {modal && <MWindowModal setModal={setModal} modalData={modalData}/>}
     </div>
   );
 };
