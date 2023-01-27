@@ -1,4 +1,4 @@
-const mWindowModal = ({ setModal, modalData }) => {
+const MWindowModal = ({ setModal, modalData }) => {
   const closeModal = () => {
     setModal(false);
   };
@@ -44,4 +44,4 @@ const mWindowModal = ({ setModal, modalData }) => {
   );
 };
 
-export default mWindowModal;
+export default MWindowModal;
