@@ -1,4 +1,4 @@
-const MWindowModal = ({ setModal, modalData }) => {
+const MemoWinModal = ({ setModal, modalData }) => {
   const closeModal = () => {
     setModal(false);
   };
@@ -44,4 +44,4 @@ const MWindowModal = ({ setModal, modalData }) => {
   );
 };
 
-export default MWindowModal;
+export default MemoWinModal;
