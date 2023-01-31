@@ -16,7 +16,7 @@
   transform: translate(-50%, -50%);
 
   /* 모달창 디자인 */
-  background-color: gray;
+  background-color: white;
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -27,7 +27,7 @@
   right: 10px;
   top: 10px;
   cursor: pointer;
-  background: gray;
+  background: white;
 }
 /* AuthModal 디자인 */
 .authModal {
@@ -51,7 +51,7 @@
   border: 1px solid black;
   border-radius: 8px;
 }
-.authClose{
+.authClose {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -64,4 +64,28 @@
   height: 398px;
   justify-content: center;
   align-items: center;
+}
+/* FoodModal */
+.modalImg {
+  width: 350px;
+  height: 270px;
+  display: block;
+  margin: auto;
+}
+.foodMName{
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.foodNutrition{
+  font-size: 15px;
+  margin: 15px;
+}
+.foodIngredients{
+  font-size: 15px;
+  margin: 15px;
+}
+.foodRecipes{
+  font-size: 15px;
+  margin: 15px;
 }

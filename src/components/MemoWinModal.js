@@ -8,23 +8,27 @@ const MemoWinModal = ({ setModal, modalData }) => {
         ❌
       </button>
       <div>
-        <img src={modalData.ATT_FILE_NO_MAIN} alt="imges" />
-        <h2>{modalData.RCP_NM}</h2>
+        <img
+          src={modalData.ATT_FILE_NO_MAIN}
+          alt="imges"
+          className="modalImg"
+        />
+        <h2 className="foodMName">{modalData.RCP_NM}</h2>
         <div>
-          <div>
-            <h2>영양정보</h2>
-            <span>칼로리 : {modalData.INFO_ENG} </span>
-            <span>탄수화물 : {modalData.INFO_CAR} </span>
-            <span>단백질 : {modalData.INFO_PRO} </span>
-            <span>지방 : {modalData.INFO_FAT} </span>
-            <span>나트륨: {modalData.INFO_NA} </span>
+          <div className="foodNutrition">
+            <h2 style={{ fontSize: "20px" }}>영양정보</h2>
+            <span>(칼로리:{modalData.INFO_ENG}),</span>
+            <span>(탄수화물:{modalData.INFO_CAR}), </span>
+            <span>(단백질:{modalData.INFO_PRO}), </span>
+            <span>(지방:{modalData.INFO_FAT}), </span>
+            <span>(나트륨:{modalData.INFO_NA} )</span>
           </div>
-          <div>
-            <h2>재료</h2>
+          <div className="foodIngredients">
+            <h2 style={{ fontSize: "20px" }}>재료</h2>
             <div>{modalData.RCP_PARTS_DTLS}</div>
           </div>
-          <div>
-            <h2>조리방법</h2>
+          <div className="foodRecipes">
+            <h2 style={{ fontSize: "20px" }}>조리방법</h2>
             <div>{modalData.MANUAL01}</div>
             <div>{modalData.MANUAL02}</div>
             <div>{modalData.MANUAL03}</div>

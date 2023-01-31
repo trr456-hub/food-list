@@ -9,23 +9,27 @@ const FoodModal = ({ modalState, setModal, foodData }) => {
         ❌
       </button>
       <div>
-        <img src={foodData[modalState].ATT_FILE_NO_MAIN} alt="imges" />
-        <h2>{foodData[modalState].RCP_NM}</h2>
+        <img
+          src={foodData[modalState].ATT_FILE_NO_MAIN}
+          alt="imges"
+          className="modalImg"
+        />
+        <h2 className="foodMName">{foodData[modalState].RCP_NM}</h2>
         <div>
-          <div>
-            <h2>영양정보</h2>
-            <span>칼로리 : {foodData[modalState].INFO_ENG} </span>
-            <span>탄수화물 : {foodData[modalState].INFO_CAR} </span>
-            <span>단백질 : {foodData[modalState].INFO_PRO} </span>
-            <span>지방 : {foodData[modalState].INFO_FAT} </span>
-            <span>나트륨: {foodData[modalState].INFO_NA} </span>
+          <div className="foodNutrition">
+            <h2 style={{fontSize:"20px"}}>영양정보</h2>
+            <span>(칼로리:{foodData[modalState].INFO_ENG}),</span>
+            <span>(탄수화물:{foodData[modalState].INFO_CAR}), </span>
+            <span>(단백질:{foodData[modalState].INFO_PRO}), </span>
+            <span>(지방:{foodData[modalState].INFO_FAT}), </span>
+            <span>(나트륨:{foodData[modalState].INFO_NA} )</span>
           </div>
-          <div>
-            <h2>재료</h2>
+          <div className="foodIngredients">
+            <h2 style={{fontSize:"20px"}}>재료</h2>
             <div>{foodData[modalState].RCP_PARTS_DTLS}</div>
           </div>
-          <div>
-            <h2>조리방법</h2>
+          <div className="foodRecipes">
+            <h2 style={{fontSize:"20px"}}>조리방법</h2>
             <div>{foodData[modalState].MANUAL01}</div>
             <div>{foodData[modalState].MANUAL02}</div>
             <div>{foodData[modalState].MANUAL03}</div>

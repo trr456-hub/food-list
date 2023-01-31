@@ -196,7 +196,7 @@ form {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .homeLi {
   padding: 10px;
@@ -213,4 +213,42 @@ form {
 .memA {
   display: flex;
   flex-direction: column;
+}
+/* Memorize */
+.MemorizeTap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+}
+.LogoutBtn {
+  background-color: rgb(206, 231, 235);
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 22pt;
+  right: 380px;
+}
+.MemorizeTitle {
+  font-size: 20px;
+  margin: 5px;
+  border: 1px solid #f5f7ad;
+  padding: 15px;
+  border-radius: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+/* MemoWindow */
+.memoWindow {
+  max-width: 1100px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.foodTap {
+  margin-right: 20px;
 }

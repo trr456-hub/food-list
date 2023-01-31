@@ -97,9 +97,7 @@ const Home = ({ userObj }) => {
       <button onClick={() => showRdmFoods(kind)} className="foodBtn">
         {keyToKorean[kind]} 뽑기
       </button>
-      <div onClick={() => setModal(kind)}>
-        {getters[kind]}
-      </div>
+      <div onClick={() => setModal(kind)}>{getters[kind]}</div>
     </div>
   ));
   // db에 들어갈 시간계산 부분
@@ -144,7 +142,7 @@ const Home = ({ userObj }) => {
           )}
           <div className="mBtn">
             <button onClick={onSubmit} className="memorize">
-              전체기록
+              💾전체 기록하기
             </button>
           </div>
           {/* </form> */}

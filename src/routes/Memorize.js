@@ -3,6 +3,8 @@ import { Auth, dbService } from "fbase";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 
 const Memorize = ({ userObj }) => {
   const [foods, setFoods] = useState([]);
@@ -37,10 +39,18 @@ const Memorize = ({ userObj }) => {
   // console.log(foods.filter((food) => console.log(food.creatorId)));
   // console.log(userObj.uid);
   return (
-    <div>
-      <button onClick={logoutClick}>로그아웃</button>
+    <div className="MemorizeTap">
+      <button className="LogoutBtn" onClick={logoutClick}>
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          color={"#f5f7ad"}
+          size="2x"
+          style={{ paddingBottom: 5 }}
+        />
+        LOGOUT
+      </button>
       {foods.map((food) => (
-        <div key={food.id}>
+        <div key={food.id} className="MemorizeTitle">
           <Link to={`/memorize/${food.id}`} state={{ foodContents: food }}>
             {food.createAt}
           </Link>

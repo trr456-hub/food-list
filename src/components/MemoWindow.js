@@ -20,11 +20,11 @@ const MemoWindow = () => {
   };
   // console.log(foodsMaping);
   return (
-    <div>
+    <div className="memoWindow">
       {foodsMaping.map((item) => (
-        <div key={item.RCP_SEQ} onClick={() => foodClick(item)}>
-          <div>{item.RCP_NM}</div>
-          <img src={item.ATT_FILE_NO_MAIN} alt="mImg" />
+        <div key={item.RCP_SEQ} onClick={() => foodClick(item)} className="foodTap">
+          <div className="foodName">{item.RCP_NM}</div>
+          <img src={item.ATT_FILE_NO_MAIN} alt="mImg" className="foodImg"/>
         </div>
       ))}
       {modal && <MemoWinModal setModal={setModal} modalData={modalData} />}
