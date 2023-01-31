@@ -1,11 +1,12 @@
-import { authService } from "fbase";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import React, { useEffect, useRef, useState } from "react";
 import "../ModalStyle.css";
 
-const AuthWindow = ({ setModal }) => {
+const AuthModal = ({ setModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const auth = getAuth();
   // 모달 외부 클릭시 끄기 처리
   // Modal 창을 useRef로 취득
 
@@ -24,7 +25,7 @@ const AuthWindow = ({ setModal }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await authService.createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       //회원가입
     } catch (error) {
       // 에러창 도출
@@ -55,11 +56,11 @@ const AuthWindow = ({ setModal }) => {
 
   return (
     <>
-      <div ref={modalRef} className="modalContainer">
-        <button className="close" onClick={closeModal}>
-          X
+      <div ref={modalRef} className="authModal">
+        <button className="authClose" onClick={closeModal}>
+        ❌
         </button>
-        <form onSubmit={onSubmit} className="loginForm">
+        <form onSubmit={onSubmit} className="modalForm">
           <input
             name="email"
             type="email"
@@ -81,7 +82,7 @@ const AuthWindow = ({ setModal }) => {
           <input
             type="submit"
             className="authInput authSubmit"
-            value="회원가입"
+            value="회원가입🔒"
           />
           {error && <span className="authError">{error}</span>}
         </form>
@@ -90,4 +91,4 @@ const AuthWindow = ({ setModal }) => {
   );
 };
 
-export default AuthWindow;
+export default AuthModal;

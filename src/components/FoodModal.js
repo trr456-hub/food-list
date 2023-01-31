@@ -1,33 +1,14 @@
-import { useEffect, useRef } from "react";
-
 const FoodModal = ({ modalState, setModal, foodData }) => {
   // console.log(modalState);
   const closeModal = () => {
     setModal(false);
   };
-
-  const modalRef = useRef();
-  useEffect(() => {
-    const handler = (e) => {
-      if (modalRef && !modalRef.current.contains(e.target)) {
-        setModal(false);
-      } else {
-        setModal(true);
-      }
-    };
-    // eventHandler 등록
-    document.addEventListener("mousedown", handler);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, [setModal]);
-  // console.log(modalRef);
   return (
     <div className="modalContainer">
       <button className="close" onClick={closeModal}>
         ❌
       </button>
-      <div ref={modalRef}>
+      <div>
         <img src={foodData[modalState].ATT_FILE_NO_MAIN} alt="imges" />
         <h2>{foodData[modalState].RCP_NM}</h2>
         <div>

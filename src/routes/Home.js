@@ -36,8 +36,8 @@ const Home = ({ userObj }) => {
   // 음식 종류 추출 부분
   const foodKinds = (food) => (
     <div key={food.RCP_PAT2}>
-      <div>{food.RCP_NM}</div>
-      <img src={food.ATT_FILE_NO_MAIN} alt="imges" />
+      <div className="foodName">{food.RCP_NM}</div>
+      <img src={food.ATT_FILE_NO_MAIN} className="foodImg" alt="imges" />
     </div>
   );
   // console.log(foodKinds);
@@ -49,8 +49,8 @@ const Home = ({ userObj }) => {
     ban: "반찬",
     ilp: "일품",
     desser: "후식",
-    gu: "국&찌개",
     ric: "밥",
+    gu: "국&찌개",
   };
   /** array의 길이만큼에 숫자 중에서 랜덤으로 숫자 하나를 뽑는 함수 */
   const randomNum = (arr) => Math.floor(Math.random() * arr.length);
@@ -59,16 +59,16 @@ const Home = ({ userObj }) => {
     ban: setBan,
     ilp: setIlp,
     desser: setDesser,
-    gu: setGu,
     ric: setRic,
+    gu: setGu,
   };
   /** state 중에서 getter 들만 모아놓은 object */
   const getters = {
     ban: ban,
     ilp: ilp,
     desser: desser,
-    gu: gu,
     ric: ric,
+    gu: gu,
   };
   /** 우리가 사용하는 음식종류들 ex: ["반찬","일품"...] */
   const kinds = Object.keys(setters);
@@ -93,11 +93,13 @@ const Home = ({ userObj }) => {
 
   /** kinds 의 길이만큼 돌면서 음식종류별 버튼을 return하는 함수 */
   const kindBtns = kinds.map((kind, i) => (
-    <div key={i}>
-      <button onClick={() => showRdmFoods(kind)}>
-        {keyToKorean[kind]}추출
+    <div key={i} className="foodKind">
+      <button onClick={() => showRdmFoods(kind)} className="foodBtn">
+        {keyToKorean[kind]} 뽑기
       </button>
-      <div onClick={() => setModal(kind)}>{getters[kind]}</div>
+      <div onClick={() => setModal(kind)}>
+        {getters[kind]}
+      </div>
     </div>
   ));
   // db에 들어갈 시간계산 부분
@@ -121,16 +123,16 @@ const Home = ({ userObj }) => {
   };
   // console.log(userObj);
   return (
-    <div>
+    <div className="homeDiv">
       {loading ? (
         <div>
-          <span>로딩중...</span>
+          <span className="loadingDiv">Loading...</span>
         </div>
       ) : (
         // React는 key prop을 사용하여 컴포넌트와 DOM 요소 간의 관계를 생성한다.
         // 리액트 라이브러리는 이 관계를 이용해 컴포넌트 리렌더링 여부를 결정한다.
         // 불필요한 리렌더링을 방지하기 위해서는 각 자식 컴포넌트마다 독립적인 key값을 넣어줘야 한다.
-        <div>
+        <div className="foods">
           {/* <form onSubmit={onSubmit}> */}
           {kindBtns}
           {modal && (
@@ -140,7 +142,11 @@ const Home = ({ userObj }) => {
               foodData={foodData}
             />
           )}
-          <button onClick={onSubmit}>전체기록</button>
+          <div className="mBtn">
+            <button onClick={onSubmit} className="memorize">
+              전체기록
+            </button>
+          </div>
           {/* </form> */}
         </div>
       )}

@@ -18,7 +18,9 @@ const App = () => {
     });
   }, []);
   return (
-    <>{init ? <AppRouter state={state} userObj={userObj} /> : "초기화 중..."}</>
+    <div className="AppTab">
+      {init ? <AppRouter state={state} userObj={userObj} /> : "초기화 중..."}
+    </div>
   );
 };
 

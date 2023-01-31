@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Auth, dbService } from "fbase";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Memorize = ({ userObj }) => {
   const [foods, setFoods] = useState([]);
@@ -18,7 +19,7 @@ const Memorize = ({ userObj }) => {
       collection(dbService, "foodList"),
       orderBy("createAt", "desc")
     );
-    onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const uID = userObj.uid;
       const foodArr = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -26,6 +27,11 @@ const Memorize = ({ userObj }) => {
       }));
       setFoods(foodArr.filter((food) => uID === food.creatorId));
       //console.log(foodArr.filter((food) => uID === food.creatorId));
+    });
+    onAuthStateChanged(Auth, (user) => {
+      if (user === null) {
+        unsubscribe();
+      }
     });
   }, [userObj.uid]);
   // console.log(foods.filter((food) => console.log(food.creatorId)));
