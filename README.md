@@ -1,5 +1,5 @@
 # 배포URL
-https://gorhf9397.github.io/food-list
+https://trr456-hub.github.io/food-list/
 
 # 사용API
 http://openapi.foodsafetykorea.go.kr/api/sample/COOKRCP01/xml/1/5
