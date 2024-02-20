@@ -1,12 +1,12 @@
-# 배포URL
+# 🌐 배포URL
 
 https://trr456-hub.github.io/food-list/
 
-# 사용API
+# ⌗ 사용API
 
 http://openapi.foodsafetykorea.go.kr/api/sample/COOKRCP01/xml/1/5
 
-# food-list (식단 랜덤 추출 웹 어플리케이션)
+# 🍖 food-list (식단 랜덤 추출 웹 어플리케이션)
 
 ### 프로젝트 참여 인원: 1명
 
@@ -18,7 +18,7 @@ http://openapi.foodsafetykorea.go.kr/api/sample/COOKRCP01/xml/1/5
 - 사용자는 반찬, 일품, 후식, 밥, 국&찌개 중에서 선택하며, 선택된 메뉴는 이미지와 이름으로 표시됩니다.
 - 이미지를 클릭하면 해당 메뉴의 영양 정보와 레시피를 확인할 수 있습니다. Firebase를 통해 구축된 데이터베이스를 사용하여 사용자는 저장된 페이지에서 메뉴를 관리하고 레시피를 확인할 수 있습니다.
 
-# 구동화면
+# 🖥️ 구동화면
 
 ### 1. 로그인
 
